@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Make;
 use App\Entity\Vehicle;
+use App\Entity\VehicleType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -14,7 +15,7 @@ class VehicleFixtures extends Fixture implements DependentFixtureInterface
     {
         $fordFocus = new Vehicle();
         $fordFocus->setName('Focus');
-        $fordFocus->setSlug('ford-focus');
+        $fordFocus->setSlug('ford-focus-hatchback');
         $fordFocus->setTechnicalData([
             'Power' => '123 bhp',
             'Top Speed' => '121 mph',
@@ -27,11 +28,12 @@ class VehicleFixtures extends Fixture implements DependentFixtureInterface
             'Fuel Type' => 'Petrol'
         ]);
         $fordFocus->setMake($this->getReference(MakeFixtures::MAKE_FORD_REFERENCE, Make::class));
+        $fordFocus->setType($this->getReference(VehicleTypeFixtures::VEHICLE_TYPE_HATCHBACK_REFERENCE, VehicleType::class));
         $manager->persist($fordFocus);
 
         $mercedesEqa = new Vehicle();
         $mercedesEqa->setName('EQA');
-        $mercedesEqa->setSlug('mercedes-eqa');
+        $mercedesEqa->setSlug('mercedes-eqa-crossover');
         $mercedesEqa->setTechnicalData([
             'Battery capacity' => '70.5 kWh',
             'Transmission' => 'Automatic',
@@ -40,11 +42,12 @@ class VehicleFixtures extends Fixture implements DependentFixtureInterface
             'Battery range' => '346 miles'
         ]);
         $mercedesEqa->setMake($this->getReference(MakeFixtures::MAKE_MERCEDES_REFERENCE, Make::class));
+        $mercedesEqa->setType($this->getReference(VehicleTypeFixtures::VEHICLE_TYPE_CROSSOVER_REFERENCE, VehicleType::class));
         $manager->persist($mercedesEqa);
 
         $mercedesAClass = new Vehicle();
         $mercedesAClass->setName('A-Class');
-        $mercedesAClass->setSlug('mercedes-a-class');
+        $mercedesAClass->setSlug('mercedes-a-class-hatchback');
         $mercedesAClass->setTechnicalData([
             'Power' => '220 bhp',
             'Top Speed' => '155 mph',
@@ -57,6 +60,7 @@ class VehicleFixtures extends Fixture implements DependentFixtureInterface
             'Fuel Type' => 'Petrol'
         ]);
         $mercedesAClass->setMake($this->getReference(MakeFixtures::MAKE_MERCEDES_REFERENCE, Make::class));
+        $mercedesAClass->setType($this->getReference(VehicleTypeFixtures::VEHICLE_TYPE_HATCHBACK_REFERENCE, VehicleType::class));
         $manager->persist($mercedesAClass);
 
         $manager->flush();

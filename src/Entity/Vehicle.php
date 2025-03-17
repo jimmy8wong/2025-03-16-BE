@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: VehicleRepository::class)]
 #[ORM\Table(name: 'vehicles')]
+#[ORM\Index(columns: ['slug'], name: 'slug_idx')]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity('slug')]
 class Vehicle
@@ -35,6 +36,10 @@ class Vehicle
     #[ORM\ManyToOne(inversedBy: 'vehicles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Make $make = null;
+
+    #[ORM\ManyToOne(inversedBy: 'vehicles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?VehicleType $type = null;
 
     public function getId(): ?int
     {
@@ -107,6 +112,18 @@ class Vehicle
     public function setMake(?Make $make): static
     {
         $this->make = $make;
+
+        return $this;
+    }
+
+    public function getType(): ?VehicleType
+    {
+        return $this->type;
+    }
+
+    public function setType(?VehicleType $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
