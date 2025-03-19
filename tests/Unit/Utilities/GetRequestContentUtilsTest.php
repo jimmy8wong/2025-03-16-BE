@@ -2,6 +2,7 @@
 
 namespace App\Tests\Unit\Utilies;
 
+use App\Utilities\GetRequestContentUtils;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 

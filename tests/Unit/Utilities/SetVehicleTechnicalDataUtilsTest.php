@@ -4,6 +4,7 @@ namespace App\Tests\Unit\Utilies;
 
 use App\Entity\Make;
 use App\Entity\Vehicle;
+use App\Utilities\SetVehicleTechnicalDataUtils;
 use PHPUnit\Framework\TestCase;
 
 class SetVehicleTechnicalDataUtilsTest extends TestCase
