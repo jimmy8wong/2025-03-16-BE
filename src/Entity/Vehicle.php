@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\VehicleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: VehicleRepository::class)]
 #[ORM\Table(name: 'vehicles')]
@@ -16,15 +17,19 @@ class Vehicle
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["vehicle:details"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["vehicle:details"])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Groups(["vehicle:details"])]
     private ?string $slug = null;
 
     #[ORM\Column]
+    #[Groups(["vehicle:details"])]
     private array $technicalData = [];
 
     #[ORM\Column]

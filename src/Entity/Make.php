@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: MakeRepository::class)]
 #[ORM\Table(name: 'makes')]
@@ -17,12 +18,15 @@ class Make
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(groups: ["make:list"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(groups: ["make:list"])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Groups(groups: ["make:list"])]
     private ?string $slug = null;
 
     /**

@@ -64,7 +64,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "test": "php bin/phpunit",
+        "test:unit": "php bin/phpunit tests/Unit",
+        "test:application": "php bin/phpunit tests/Controller"
     },
     "conflict": {
         "symfony/symfony": "*"

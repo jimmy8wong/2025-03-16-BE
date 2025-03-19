@@ -16,28 +16,24 @@ class MakeRepository extends ServiceEntityRepository
         parent::__construct($registry, Make::class);
     }
 
-    //    /**
-    //     * @return Make[] Returns an array of Make objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('m.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Returns all Makes with at least one vehicle matching the vehicle type slug
+     *
+     * @param string $vehicleTypeSlug
+     * @return array
+     */
+    public function findByVehicleTypeSlug(string $vehicleTypeSlug): array
+    {
+        $entityManager = $this->getEntityManager();
 
-    //    public function findOneBySomeField($value): ?Make
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        $query = $entityManager->createQuery(
+            'SELECT m
+            FROM App\Entity\Make m
+            INNER JOIN m.vehicles v
+            INNER JOIN v.type t
+            WHERE t.slug = :slug'
+        )->setParameter('slug', $vehicleTypeSlug);
+
+        return $query->getResult();
+    }
 }
