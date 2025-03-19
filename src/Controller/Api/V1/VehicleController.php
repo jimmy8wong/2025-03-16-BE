@@ -3,6 +3,8 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Vehicle;
+use App\Service\UpdateVehicleTechnicalDataService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,9 +25,11 @@ final class VehicleController extends AbstractController {
     #[Route('/{slug}/technical-data', name: 'technical_data_patch', methods: ['PATCH'])]
     public function updateVehicleTechnicalData(
         #[MapEntity(mapping:['slug'=>'slug'])] Vehicle $vehicle, 
-        Request $request
+        Request $request,
+        EntityManagerInterface $entityManager
     ): JsonResponse {
-        // TODO implement service
+        $service = new UpdateVehicleTechnicalDataService($vehicle, $request, $entityManager);
+        $vehicle = $service->update();
 
         return $this->json($vehicle, $status = 200, [], [
             'groups' => ['vehicle:details']

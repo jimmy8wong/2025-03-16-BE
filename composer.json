@@ -67,6 +67,7 @@
         ],
         "test": "php bin/phpunit",
         "test:unit": "php bin/phpunit tests/Unit",
+        "test:functional": "php bin/phpunit tests/Functional",
         "test:application": "php bin/phpunit tests/Controller"
     },
     "conflict": {

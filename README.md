@@ -29,12 +29,17 @@ Run all tests using:
 composer test
 ```
 
-Run just unit tests using:
+Run just the unit tests using:
 ```bash
 composer test:unit
 ```
 
-Run just application tests using:
+Run just the functional tests using:
+```bash
+composer test:functional
+```
+
+Run just the application tests using:
 ```bash
 composer test:application
 ```
