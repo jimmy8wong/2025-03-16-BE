@@ -15,3 +15,5 @@ The application is based on `symfony/skeleton@7.2` and requires the following de
 - `symfony/validator`
 - `orm-fixtures`
 - `symfony/test-pack`
+- `symfony/serializer-pack`
+- `symfony/process`
