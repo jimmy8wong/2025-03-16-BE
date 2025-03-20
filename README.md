@@ -48,12 +48,19 @@ The application is based on `symfony/skeleton@7.2` and requires the following de
 - `symfony/test-pack`
 - `symfony/serializer-pack`
 - `symfony/process`
+- `nelmio/api-doc-bundle`
+- `twig`
+- `asset`
 
 ## Testing
-This project includes:
-- **Unit Tests**: Verify individual methods.
-- **Functional Tests**: TODO
+This project includes the following tests:
+- **Unit Tests**: Verifies individual methods.
+- **Functional Tests**: Verifies services which uses multiple classes and methods.
 - **Application Tests**: Verifies controller endpoints.
+
+```
+OK (13 tests, 38 assertions)
+```
 
 Run all tests using:
 ```bash
@@ -73,4 +80,31 @@ composer test:functional
 Run just the application tests using:
 ```bash
 composer test:application
+```
+
+## API
+
+API docs generated using Nelmio in the OpenAPI format.
+
+Docs can be found at this route:
+```
+/api/doc
+```
+
+### Example CURL requests
+
+```
+curl --location 'http://127.0.0.1:8000/api/v1/makes/hatchback'
+```
+
+```
+curl --location 'http://127.0.0.1:8000/api/v1/vehicles/ford-focus-hatchback'
+```
+
+```
+curl --location --request PATCH 'http://127.0.0.1:8000/api/v1/vehicles/ford-focus-hatchback/technical-data' \
+--header 'Content-Type: application/json' \
+--data '{
+    "Power": "71 bhp"
+}'
 ```
